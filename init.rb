@@ -1,5 +1,4 @@
 require 'redmine'
-require 'dispatcher'
 require 'query_patch_closed_date'
 require 'close_issue_patch'
 
@@ -13,6 +12,6 @@ Redmine::Plugin.register :redmine_redmine_close_issue do
   author_url 'http://matheusashton.net'
 end
 
-Dispatcher.to_prepare do
+ActionDispatch::Callbacks.to_prepare do
   Query.send( :include, IssueQueryPatch)
 end
